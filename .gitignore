@@ -1,0 +1,5 @@
+(docs/PROJECT_UNDERSTANDING.md is a documentation file, which is a source/config file type, so no need to add anything to .gitignore)
+
+```gitignore
+
+```
