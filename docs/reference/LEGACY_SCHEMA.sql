@@ -495,16 +495,6 @@ CREATE TABLE [dbo].[RelationConstraints](
 	[MaxCardinallity] [nvarchar](max) NULL,
 	[IsActive] [bit] NULL,
 	[Deleted] [datetime] NULL,
-	[ConstraintCode] [nvarchar](150) NULL,
-	[SourceToTargetMin] [int] NULL,
-	[SourceToTargetMax] [int] NULL,
-	[TargetToSourceMin] [int] NULL,
-	[TargetToSourceMax] [int] NULL,
-	[Severity] [tinyint] NOT NULL,
-	[ValidationPattern] [nvarchar](1000) NULL,
-	[MinimumLength] [int] NULL,
-	[MaximumLength] [int] NULL,
-	[CreatedAt] [datetime2](0) NOT NULL,
  CONSTRAINT [PK__tmp_ms_x__3214EC073239AA1C] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -525,7 +515,6 @@ CREATE TABLE [dbo].[Relations](
 	[TermsRelation_Level] [int] NULL,
 	[TermsRelation_Description] [nvarchar](max) NULL,
 	[Deleted] [datetime] NULL,
-	[TermsRelation_Locator] [nvarchar](100) NULL,
  CONSTRAINT [PK_TermsRelations] PRIMARY KEY CLUSTERED 
 (
 	[TermsRelation_Id] ASC
@@ -541,8 +530,6 @@ CREATE TABLE [dbo].[RelationsTypes](
 	[RelationsType_Id] [int] IDENTITY(1,1) NOT NULL,
 	[RelationsType_ParentId] [int] NULL,
 	[RelationsType_Title] [nvarchar](50) NOT NULL,
-	[RelationsType_Description] [nvarchar](max) NULL,
-	[RelationsType_Deleted] [datetime] NULL,
 	[RelationsType_ReverseTitle] [nvarchar](50) NULL,
 	[RelationsType_IsNodeLabel] [bit] NOT NULL,
 	[RelationsType_DataTypeId] [int] NULL,
@@ -553,6 +540,8 @@ CREATE TABLE [dbo].[RelationsTypes](
 	[RelationsType_IsAsymmetric] [bit] NOT NULL,
 	[RelationsType_IsEquivalence] [bit] NOT NULL,
 	[RelationsType_IsIrreflexive] [bit] NOT NULL,
+	[RelationsType_Description] [nvarchar](max) NULL,
+	[RelationsType_Deleted] [datetime] NULL,
  CONSTRAINT [relationstype_relationstype_id_primary] PRIMARY KEY CLUSTERED 
 (
 	[RelationsType_Id] ASC
