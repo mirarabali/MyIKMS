@@ -1,0 +1,17 @@
+/workspace/src/IKMS.Infrastructure/bin/Debug/net9.0/IKMS.Infrastructure.deps.json
+/workspace/src/IKMS.Infrastructure/bin/Debug/net9.0/IKMS.Infrastructure.runtimeconfig.json
+/workspace/src/IKMS.Infrastructure/bin/Debug/net9.0/IKMS.Infrastructure.dll
+/workspace/src/IKMS.Infrastructure/bin/Debug/net9.0/IKMS.Infrastructure.pdb
+/workspace/src/IKMS.Infrastructure/bin/Debug/net9.0/IKMS.Domain.dll
+/workspace/src/IKMS.Infrastructure/bin/Debug/net9.0/IKMS.Domain.pdb
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Infrastructure.csproj.AssemblyReference.cache
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Infrastructure.AssemblyInfoInputs.cache
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Infrastructure.AssemblyInfo.cs
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Infrastructure.csproj.CoreCompileInputs.cache
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Inf.6CB8232D.Up2Date
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Infrastructure.dll
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/refint/IKMS.Infrastructure.dll
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Infrastructure.pdb
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/IKMS.Infrastructure.genruntimeconfig.cache
+/workspace/src/IKMS.Infrastructure/obj/Debug/net9.0/ref/IKMS.Infrastructure.dll

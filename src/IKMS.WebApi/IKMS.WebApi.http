@@ -1,0 +1,6 @@
+@IKMS.WebApi_HostAddress = http://localhost:5019
+
+GET {{IKMS.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

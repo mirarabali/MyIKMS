@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "YNcPBYlqagw=",
+  "success": true,
+  "projectFilePath": "/workspace/src/IKMS.Application/IKMS.Application.csproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
+    "/root/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.9.0/fluentvalidation.dependencyinjectionextensions.11.9.0.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/2.1.0/microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
