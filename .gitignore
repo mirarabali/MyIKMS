@@ -1,0 +1,97 @@
+```
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+*.user
+*.userosscache
+*.suo
+*.csproj.user
+*.vbproj.user
+*.fsproj.user
+*.userprefs
+
+# MSBuild
+*.VC.db
+*.VC.VC.opendb
+
+# ASP.NET Core
+**/bin/Debug/**
+**/bin/Release/**
+**/obj/Debug/**
+**/obj/Release/**
+
+# Dependencies
+node_modules/
+packages/
+
+# Environment specific settings
+.env
+.env.local
+.env.*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Testing
+coverage/
+*.cover
+*.log
+test-results/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Database
+*.db
+*.db-journal
+
+# User-specific files
+.vs/
+*.VC.VC.opendb
+*.VC.db
+
+# Local configuration
+local.settings.json
+appsettings.Development.json
+appsettings.Production.json
+
+# Schema and database files
+db/*.sql
+db/*.db
+db/schema.snapshot.json
+
+# Tools and scripts output
+tools/output/
+tools/reports/
+
+# Temporary build files
+**/Debug/**/*
+**/Release/**/*
+**/x64/**/*
+**/x86/**/*
+```
