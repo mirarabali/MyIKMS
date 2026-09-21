@@ -1,0 +1,6 @@
+{
+  "IKMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/workspace\/src\/IKMS.Application",
+  "IKMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/workspace\/src\/IKMS.Domain",
+  "IKMS.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/workspace\/src\/IKMS.Infrastructure",
+  "IKMS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/workspace\/src\/IKMS.WebApi"
+}

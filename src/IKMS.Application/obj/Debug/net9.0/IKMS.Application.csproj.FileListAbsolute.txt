@@ -1,0 +1,15 @@
+/workspace/src/IKMS.Application/bin/Debug/net9.0/IKMS.Application.deps.json
+/workspace/src/IKMS.Application/bin/Debug/net9.0/IKMS.Application.dll
+/workspace/src/IKMS.Application/bin/Debug/net9.0/IKMS.Application.pdb
+/workspace/src/IKMS.Application/bin/Debug/net9.0/IKMS.Domain.dll
+/workspace/src/IKMS.Application/bin/Debug/net9.0/IKMS.Domain.pdb
+/workspace/src/IKMS.Application/obj/Debug/net9.0/IKMS.Application.csproj.AssemblyReference.cache
+/workspace/src/IKMS.Application/obj/Debug/net9.0/IKMS.Application.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/src/IKMS.Application/obj/Debug/net9.0/IKMS.Application.AssemblyInfoInputs.cache
+/workspace/src/IKMS.Application/obj/Debug/net9.0/IKMS.Application.AssemblyInfo.cs
+/workspace/src/IKMS.Application/obj/Debug/net9.0/IKMS.Application.csproj.CoreCompileInputs.cache
+/workspace/src/IKMS.Application/obj/Debug/net9.0/IKMS.App.CD74A304.Up2Date
+/workspace/src/IKMS.Application/obj/Debug/net9.0/IKMS.Application.dll
+/workspace/src/IKMS.Application/obj/Debug/net9.0/refint/IKMS.Application.dll
+/workspace/src/IKMS.Application/obj/Debug/net9.0/IKMS.Application.pdb
+/workspace/src/IKMS.Application/obj/Debug/net9.0/ref/IKMS.Application.dll

@@ -1,0 +1,25 @@
+```
+# Build artifacts
+bin/
+obj/
+
+# Dependencies
+packages/
+
+# Logs
+*.log
+
+# User-specific files
+.vs/
+*.user
+*.userosscache
+*.suo
+
+# Environment specific settings
+appsettings.*.json
+web.config
+
+# OS generated files
+.DS_Store
+Thumbs.db
+```

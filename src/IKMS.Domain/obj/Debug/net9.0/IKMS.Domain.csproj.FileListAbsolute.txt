@@ -1,0 +1,11 @@
+/workspace/src/IKMS.Domain/bin/Debug/net9.0/IKMS.Domain.deps.json
+/workspace/src/IKMS.Domain/bin/Debug/net9.0/IKMS.Domain.dll
+/workspace/src/IKMS.Domain/bin/Debug/net9.0/IKMS.Domain.pdb
+/workspace/src/IKMS.Domain/obj/Debug/net9.0/IKMS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/src/IKMS.Domain/obj/Debug/net9.0/IKMS.Domain.AssemblyInfoInputs.cache
+/workspace/src/IKMS.Domain/obj/Debug/net9.0/IKMS.Domain.AssemblyInfo.cs
+/workspace/src/IKMS.Domain/obj/Debug/net9.0/IKMS.Domain.csproj.CoreCompileInputs.cache
+/workspace/src/IKMS.Domain/obj/Debug/net9.0/IKMS.Domain.dll
+/workspace/src/IKMS.Domain/obj/Debug/net9.0/refint/IKMS.Domain.dll
+/workspace/src/IKMS.Domain/obj/Debug/net9.0/IKMS.Domain.pdb
+/workspace/src/IKMS.Domain/obj/Debug/net9.0/ref/IKMS.Domain.dll
