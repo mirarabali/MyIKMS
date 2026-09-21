@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IKMS.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e924b43f9b5330c61dfbc162876465ae79ba4ac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe5bcc1e432a8d4654063ed6d3f70057bc053a55")]
 [assembly: System.Reflection.AssemblyProductAttribute("IKMS.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IKMS.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
