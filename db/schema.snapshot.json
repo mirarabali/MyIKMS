@@ -1,0 +1,590 @@
+# IKMS Database Schema Snapshot
+
+**Authoritative snapshot of the frozen legacy schema.** Generated from the Appendix. Any diff between this and the scaffolded EF Core model (other than added indexes/unique constraints/full-text catalogs) indicates a violation of INV-01/INV-02/INV-03.
+
+```json
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2025-01-01T00:00:00Z",
+  "source": "Appendix - Legacy Reference Schema (FINAL)",
+  "tables": {
+    "API": {
+      "columns": {
+        "API_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "API_ControllerName": { "type": "nvarchar(100)", "nullable": false },
+        "API_URL": { "type": "nvarchar(max)", "nullable": false },
+        "API_ActionType": { "type": "nvarchar(50)", "nullable": false },
+        "API_Deleted": { "type": "datetime2(7)", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "AuthAccessTokenBlacklists": {
+      "columns": {
+        "Id": { "type": "bigint", "nullable": false, "primaryKey": true },
+        "TokenId": { "type": "nvarchar(200)", "nullable": false },
+        "CreatedAt": { "type": "datetime2(7)", "nullable": false },
+        "ExpiresAt": { "type": "datetime2(7)", "nullable": false }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "AuthLoginLockouts": {
+      "columns": {
+        "Id": { "type": "bigint", "nullable": false, "primaryKey": true },
+        "Username": { "type": "nvarchar(255)", "nullable": false },
+        "FailedAttempts": { "type": "int", "nullable": false },
+        "LockoutUntil": { "type": "datetime2(7)", "nullable": true },
+        "LastFailedAt": { "type": "datetime2(7)", "nullable": false },
+        "LastFailedIp": { "type": "nvarchar(64)", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "AuthRefreshTokens": {
+      "columns": {
+        "Id": { "type": "bigint", "nullable": false, "primaryKey": true },
+        "UserId": { "type": "int", "nullable": true },
+        "SessionId": { "type": "uniqueidentifier", "nullable": true },
+        "TokenHash": { "type": "nvarchar(256)", "nullable": false },
+        "CreatedAt": { "type": "datetime2(7)", "nullable": false },
+        "ExpiresAt": { "type": "datetime2(7)", "nullable": false },
+        "ConsumedAt": { "type": "datetime2(7)", "nullable": true },
+        "RevokedAt": { "type": "datetime2(7)", "nullable": true },
+        "ReplacedByTokenHash": { "type": "nvarchar(256)", "nullable": true },
+        "ParentTokenHash": { "type": "nvarchar(256)", "nullable": true },
+        "LastUsedAt": { "type": "datetime2(7)", "nullable": true },
+        "LastUsedIp": { "type": "nvarchar(64)", "nullable": true },
+        "LastUsedUserAgent": { "type": "nvarchar(512)", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "UserId", "references": { "table": "Users", "column": "User_Id" } },
+        { "column": "SessionId", "references": { "table": "AuthSessions", "column": "SessionId" } }
+      ],
+      "indexes": []
+    },
+    "AuthSessions": {
+      "columns": {
+        "SessionId": { "type": "uniqueidentifier", "nullable": false, "primaryKey": true },
+        "UserId": { "type": "int", "nullable": true },
+        "CreatedAt": { "type": "datetime2(7)", "nullable": false },
+        "LastSeenAt": { "type": "datetime2(7)", "nullable": false },
+        "UserAgent": { "type": "nvarchar(512)", "nullable": true },
+        "Ip": { "type": "nvarchar(64)", "nullable": true },
+        "IsRevoked": { "type": "bit", "nullable": false },
+        "RevokedAt": { "type": "datetime2(7)", "nullable": true },
+        "RevokeReason": { "type": "nvarchar(256)", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "UserId", "references": { "table": "Users", "column": "User_Id" } }
+      ],
+      "indexes": []
+    },
+    "DocContent": {
+      "columns": {
+        "DocContent_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "DocContent_TMDId": { "type": "int", "nullable": true },
+        "DocContent_VolumeNo": { "type": "int", "nullable": true },
+        "DocContent_SectionNo": { "type": "int", "nullable": true },
+        "DocContent_PageNo": { "type": "int", "nullable": true },
+        "DocContent_ParagraphNo": { "type": "int", "nullable": true },
+        "DocContent_Text": { "type": "text", "nullable": true },
+        "DocContent_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "DocContent_TMDId", "references": { "table": "TMD", "column": "TMD_Id" } }
+      ],
+      "indexes": []
+    },
+    "Domains": {
+      "columns": {
+        "Domain_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Domain_Title": { "type": "nvarchar(50)", "nullable": false },
+        "Domain_Parent": { "type": "int", "nullable": true },
+        "Domain_Description": { "type": "nvarchar(50)", "nullable": true },
+        "Domain_StateId": { "type": "int", "nullable": true },
+        "Domain_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Domain_Parent", "references": { "table": "Domains", "column": "Domain_Id" } },
+        { "column": "Domain_StateId", "references": { "table": "States", "column": "State_Id" } }
+      ],
+      "indexes": []
+    },
+    "Files": {
+      "columns": {
+        "File_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "File_Title": { "type": "text", "nullable": false },
+        "File_TableName": { "type": "varchar(50)", "nullable": false },
+        "File_TableRecordId": { "type": "int", "nullable": false },
+        "File_Description": { "type": "text", "nullable": false },
+        "File_Address": { "type": "nvarchar(max)", "nullable": false },
+        "File_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "Logs": {
+      "columns": {
+        "Log_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Log_TableName": { "type": "nvarchar(200)", "nullable": false },
+        "Log_TableRecordId": { "type": "int", "nullable": false },
+        "Log_TypeId": { "type": "int", "nullable": true },
+        "Log_Activity": { "type": "text", "nullable": false },
+        "Log_UserId": { "type": "int", "nullable": true },
+        "Log_CreatedDateTime": { "type": "datetime", "nullable": false }
+      },
+      "foreignKeys": [
+        { "column": "Log_TypeId", "references": { "table": "LogType", "column": "LogType_Id" } },
+        { "column": "Log_UserId", "references": { "table": "Users", "column": "User_Id" } }
+      ],
+      "indexes": []
+    },
+    "LogType": {
+      "columns": {
+        "LogType_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "LogType_Name": { "type": "nvarchar(100)", "nullable": true },
+        "LogType_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "Modules": {
+      "columns": {
+        "Module_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Module_Name": { "type": "nvarchar(50)", "nullable": false },
+        "Module_ParentId": { "type": "int", "nullable": true },
+        "Module_Description": { "type": "nvarchar(50)", "nullable": true },
+        "Module_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Module_ParentId", "references": { "table": "Modules", "column": "Module_Id" } }
+      ],
+      "indexes": []
+    },
+    "MRT": {
+      "columns": {
+        "MRT_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "MRT_ModuleId": { "type": "int", "nullable": true },
+        "MRT_RelationTypeId": { "type": "int", "nullable": true },
+        "MRT_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "MRT_ModuleId", "references": { "table": "Modules", "column": "Module_Id" } },
+        { "column": "MRT_RelationTypeId", "references": { "table": "RelationsTypes", "column": "RelationsType_Id" } }
+      ],
+      "indexes": []
+    },
+    "News": {
+      "columns": {
+        "News_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "News_Title": { "type": "nvarchar(max)", "nullable": false },
+        "News_Abstract": { "type": "nvarchar(max)", "nullable": true },
+        "News_Content": { "type": "text", "nullable": true },
+        "News_Link": { "type": "nvarchar(4000)", "nullable": true },
+        "News_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "NewsCategory": {
+      "columns": {
+        "NewsCtegory_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "NewsCtegory_Title": { "type": "nvarchar(max)", "nullable": false },
+        "NewsCtegory_Description": { "type": "nvarchar(max)", "nullable": false },
+        "NewsCtegory_Image": { "type": "nvarchar(max)", "nullable": false },
+        "NewsCtegory_OrganizationId": { "type": "int", "nullable": true },
+        "NewsCtegory_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "NewsCtegory_OrganizationId", "references": { "table": "Organizations", "column": "Organization_Id" } }
+      ],
+      "indexes": []
+    },
+    "NewsRelNewsCategory": {
+      "columns": {
+        "NewsRelNewsCategory_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "NewsRelNewsCategory_NewsId": { "type": "int", "nullable": true },
+        "NewsRelNewsCategory_NewsCategoryId": { "type": "int", "nullable": true },
+        "NewsRelNewsCategory_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "NewsRelNewsCategory_NewsId", "references": { "table": "News", "column": "News_Id" } },
+        { "column": "NewsRelNewsCategory_NewsCategoryId", "references": { "table": "NewsCategory", "column": "NewsCtegory_Id" } }
+      ],
+      "indexes": []
+    },
+    "NewsRelTags": {
+      "columns": {
+        "NewsRelTags_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "NewsRelTags_NewsId": { "type": "int", "nullable": true },
+        "NewsRelTags_TagId": { "type": "int", "nullable": true },
+        "NewsRelTags_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "NewsRelTags_NewsId", "references": { "table": "News", "column": "News_Id" } },
+        { "column": "NewsRelTags_TagId", "references": { "table": "Terms", "column": "Term_Id" } }
+      ],
+      "indexes": []
+    },
+    "Organizations": {
+      "columns": {
+        "Organization_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Organization_Name": { "type": "nvarchar(500)", "nullable": false },
+        "Oranization_Description": { "type": "nvarchar(1000)", "nullable": true },
+        "Organization_ParentId": { "type": "int", "nullable": true },
+        "Organization_Email": { "type": "nvarchar(100)", "nullable": true },
+        "Organization_Address": { "type": "nvarchar(max)", "nullable": true },
+        "Organization_Phone": { "type": "varchar(50)", "nullable": true },
+        "Organization_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Organization_ParentId", "references": { "table": "Organizations", "column": "Organization_Id" } }
+      ],
+      "indexes": []
+    },
+    "OrganizationUsers": {
+      "columns": {
+        "OrganizationUsers_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "OrganizationUsers_OrganizationId": { "type": "int", "nullable": true },
+        "OrganizationUsers_UserId": { "type": "int", "nullable": true },
+        "OrganizationUsers_isAgent": { "type": "bit", "nullable": false },
+        "OrganizationUsers_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "OrganizationUsers_OrganizationId", "references": { "table": "Organizations", "column": "Organization_Id" } },
+        { "column": "OrganizationUsers_UserId", "references": { "table": "Users", "column": "User_Id" } }
+      ],
+      "indexes": []
+    },
+    "Payments": {
+      "columns": {
+        "Payment_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Payment_OrganizationUserId": { "type": "int", "nullable": true },
+        "Payment_Cost": { "type": "int", "nullable": false },
+        "Payment_ProjectId": { "type": "int", "nullable": true },
+        "Payment_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Payment_OrganizationUserId", "references": { "table": "OrganizationUsers", "column": "OrganizationUsers_Id" } },
+        { "column": "Payment_ProjectId", "references": { "table": "Projects", "column": "Project_Id" } }
+      ],
+      "indexes": []
+    },
+    "Permissions": {
+      "columns": {
+        "Permission_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Permission_RoleId": { "type": "int", "nullable": true },
+        "Permission_APIId": { "type": "int", "nullable": true },
+        "Permission_Value": { "type": "nvarchar(max)", "nullable": true },
+        "Permission_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Permission_RoleId", "references": { "table": "Roles", "column": "Role_Id" } },
+        { "column": "Permission_APIId", "references": { "table": "API", "column": "API_Id" } }
+      ],
+      "indexes": []
+    },
+    "Process": {
+      "columns": {
+        "Process_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Process_StateId": { "type": "int", "nullable": true },
+        "Process_ProjectTypeId": { "type": "int", "nullable": true },
+        "Process_ApiId": { "type": "int", "nullable": true },
+        "Process_Next": { "type": "int", "nullable": true },
+        "Process_Previous": { "type": "int", "nullable": true },
+        "Process_Duration": { "type": "int", "nullable": true },
+        "Process_Condition": { "type": "text", "nullable": true },
+        "Process_Deleted": { "type": "datetime", "nullable": true },
+        "Process_RoleId": { "type": "int", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Process_StateId", "references": { "table": "States", "column": "State_Id" } },
+        { "column": "Process_ProjectTypeId", "references": { "table": "ProjectType", "column": "ProjectType_Id" } },
+        { "column": "Process_ApiId", "references": { "table": "API", "column": "API_Id" } },
+        { "column": "Process_RoleId", "references": { "table": "Roles", "column": "Role_Id" } }
+      ],
+      "indexes": []
+    },
+    "Projects": {
+      "columns": {
+        "Project_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Project_Title": { "type": "nvarchar(500)", "nullable": false },
+        "Project_ProjectTypeId": { "type": "int", "nullable": true },
+        "Project_ProcessId": { "type": "int", "nullable": true },
+        "Project_StartDate": { "type": "datetime2(7)", "nullable": true },
+        "Project_EndDate": { "type": "datetime2(7)", "nullable": true },
+        "Project_ChangeProcessDate": { "type": "datetime2(7)", "nullable": true },
+        "Project_Deleted": { "type": "datetime", "nullable": true },
+        "Project_PreviousStepText": { "type": "nvarchar(max)", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Project_ProjectTypeId", "references": { "table": "ProjectType", "column": "ProjectType_Id" } },
+        { "column": "Project_ProcessId", "references": { "table": "Process", "column": "Process_Id" } }
+      ],
+      "indexes": []
+    },
+    "ProjectType": {
+      "columns": {
+        "ProjectType_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "ProjectType_Name": { "type": "nvarchar(max)", "nullable": false },
+        "ProjectType_OrganizationId": { "type": "int", "nullable": true },
+        "ProjectType_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "ProjectType_OrganizationId", "references": { "table": "Organizations", "column": "Organization_Id" } }
+      ],
+      "indexes": []
+    },
+    "ProjectUsers": {
+      "columns": {
+        "ProjectUser_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "ProjectUser_UserId": { "type": "int", "nullable": true },
+        "ProjectUser_ProjectId": { "type": "int", "nullable": true },
+        "ProjectUser_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "ProjectUser_UserId", "references": { "table": "Users", "column": "User_Id" } },
+        { "column": "ProjectUser_ProjectId", "references": { "table": "Projects", "column": "Project_Id" } }
+      ],
+      "indexes": []
+    },
+    "RelationConstraints": {
+      "columns": {
+        "Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Mrt_Id": { "type": "int", "nullable": true },
+        "ConstraintName": { "type": "nvarchar(100)", "nullable": true },
+        "SqlCondition": { "type": "nvarchar(max)", "nullable": true },
+        "ErrorMessage": { "type": "nvarchar(500)", "nullable": true },
+        "MinCardinallity": { "type": "nvarchar(max)", "nullable": true },
+        "MaxCardinallity": { "type": "nvarchar(max)", "nullable": true },
+        "IsActive": { "type": "bit", "nullable": true },
+        "Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Mrt_Id", "references": { "table": "MRT", "column": "MRT_Id" } }
+      ],
+      "indexes": []
+    },
+    "Relations": {
+      "columns": {
+        "TermsRelation_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "First_TMDId": { "type": "int", "nullable": true },
+        "TermsRelation_TypeId": { "type": "int", "nullable": true },
+        "Second_TMDId": { "type": "int", "nullable": true },
+        "TermsRelation_Priority": { "type": "int", "nullable": true },
+        "TermsRelation_Level": { "type": "int", "nullable": true },
+        "TermsRelation_Description": { "type": "nvarchar(max)", "nullable": true },
+        "Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "First_TMDId", "references": { "table": "TMD", "column": "TMD_Id" } },
+        { "column": "TermsRelation_TypeId", "references": { "table": "RelationsTypes", "column": "RelationsType_Id" } },
+        { "column": "Second_TMDId", "references": { "table": "TMD", "column": "TMD_Id" } }
+      ],
+      "indexes": []
+    },
+    "RelationsTypes": {
+      "columns": {
+        "RelationsType_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "RelationsType_ParentId": { "type": "int", "nullable": true },
+        "RelationsType_Title": { "type": "nvarchar(50)", "nullable": false },
+        "RelationsType_Description": { "type": "nvarchar(max)", "nullable": true },
+        "RelationsType_Deleted": { "type": "datetime", "nullable": true },
+        "RelationsType_ReverseTitle": { "type": "nvarchar(50)", "nullable": true },
+        "RelationsType_IsNodeLabel": { "type": "bit", "nullable": false },
+        "RelationsType_DataTypeId": { "type": "int", "nullable": true },
+        "RelationsType_IsSystemDefined": { "type": "bit", "nullable": false },
+        "RelationsType_Code": { "type": "nvarchar(150)", "nullable": true },
+        "RelationsType_IsHierarchical": { "type": "bit", "nullable": false },
+        "RelationsType_IsTransitive": { "type": "bit", "nullable": false },
+        "RelationsType_IsAsymmetric": { "type": "bit", "nullable": false },
+        "RelationsType_IsEquivalence": { "type": "bit", "nullable": false },
+        "RelationsType_IsIrreflexive": { "type": "bit", "nullable": false }
+      },
+      "foreignKeys": [
+        { "column": "RelationsType_ParentId", "references": { "table": "RelationsTypes", "column": "RelationsType_Id" } },
+        { "column": "RelationsType_DataTypeId", "references": { "table": "RelationsTypes", "column": "RelationsType_Id" } }
+      ],
+      "indexes": []
+    },
+    "Roles": {
+      "columns": {
+        "Role_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Role_Name": { "type": "nvarchar(500)", "nullable": false },
+        "Role_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "States": {
+      "columns": {
+        "State_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "State_Title": { "type": "nvarchar(50)", "nullable": false },
+        "State_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "Terms": {
+      "columns": {
+        "Term_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Term_Title": { "type": "nvarchar(4000)", "nullable": true },
+        "Term_Description": { "type": "nvarchar(max)", "nullable": true },
+        "Term_StateId": { "type": "int", "nullable": true },
+        "Term_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Term_StateId", "references": { "table": "States", "column": "State_Id" } }
+      ],
+      "indexes": []
+    },
+    "Themes": {
+      "columns": {
+        "Themes_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "Themes_Name": { "type": "nvarchar(max)", "nullable": false },
+        "Themes_OrganizationId": { "type": "int", "nullable": true },
+        "Themes_ModuleId": { "type": "int", "nullable": true },
+        "Themes_DomainId": { "type": "int", "nullable": true },
+        "Themes_ThemeTypeId": { "type": "int", "nullable": true },
+        "Themes_Code": { "type": "nvarchar(max)", "nullable": false },
+        "Themes_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "Themes_OrganizationId", "references": { "table": "Organizations", "column": "Organization_Id" } },
+        { "column": "Themes_ModuleId", "references": { "table": "Modules", "column": "Module_Id" } },
+        { "column": "Themes_DomainId", "references": { "table": "Domains", "column": "Domain_Id" } },
+        { "column": "Themes_ThemeTypeId", "references": { "table": "ThemeTypes", "column": "ThemeType_Id" } }
+      ],
+      "indexes": []
+    },
+    "ThemeTypes": {
+      "columns": {
+        "ThemeType_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "ThemeType_Name": { "type": "nvarchar(max)", "nullable": false },
+        "ThemeTypes_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    },
+    "TMD": {
+      "columns": {
+        "TMD_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "TMD_ModuleId": { "type": "int", "nullable": true },
+        "TMD_DomainId": { "type": "int", "nullable": true },
+        "TMD_TermId": { "type": "int", "nullable": true },
+        "TMD_StateId": { "type": "int", "nullable": true },
+        "TMD_IsPreferred": { "type": "bit", "nullable": true },
+        "TMD_Deleted": { "type": "datetime", "nullable": true },
+        "State_Id": { "type": "int", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "TMD_ModuleId", "references": { "table": "Modules", "column": "Module_Id" } },
+        { "column": "TMD_DomainId", "references": { "table": "Domains", "column": "Domain_Id" } },
+        { "column": "TMD_TermId", "references": { "table": "Terms", "column": "Term_Id" } },
+        { "column": "State_Id", "references": { "table": "States", "column": "State_Id" } }
+      ],
+      "indexes": []
+    },
+    "TMDP": {
+      "columns": {
+        "TMDP_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "TMDP_TMDId": { "type": "int", "nullable": true },
+        "TMDP_ProjectId": { "type": "int", "nullable": true },
+        "TMDP_StateId": { "type": "int", "nullable": true },
+        "TMDP_StartDate": { "type": "datetime2(7)", "nullable": true },
+        "TMDP_EndDate": { "type": "datetime2(7)", "nullable": true },
+        "TMDP_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "TMDP_TMDId", "references": { "table": "TMD", "column": "TMD_Id" } },
+        { "column": "TMDP_ProjectId", "references": { "table": "Projects", "column": "Project_Id" } },
+        { "column": "TMDP_StateId", "references": { "table": "States", "column": "State_Id" } }
+      ],
+      "indexes": []
+    },
+    "UserRoles": {
+      "columns": {
+        "UserRole_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "UserRole_UserId": { "type": "int", "nullable": true },
+        "UserRole_RoleId": { "type": "int", "nullable": true },
+        "UserRole_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [
+        { "column": "UserRole_UserId", "references": { "table": "Users", "column": "User_Id" } },
+        { "column": "UserRole_RoleId", "references": { "table": "Roles", "column": "Role_Id" } }
+      ],
+      "indexes": []
+    },
+    "Users": {
+      "columns": {
+        "User_Id": { "type": "int", "nullable": false, "primaryKey": true },
+        "User_UserName": { "type": "nvarchar(255)", "nullable": false },
+        "User_Password": { "type": "nvarchar(255)", "nullable": false },
+        "User_Name": { "type": "nvarchar(50)", "nullable": true },
+        "User_Family": { "type": "nvarchar(50)", "nullable": true },
+        "User_Email": { "type": "nchar(100)", "nullable": true },
+        "User_Phone": { "type": "varchar(50)", "nullable": true },
+        "User_Address": { "type": "nvarchar(max)", "nullable": true },
+        "User_RegistrationDate": { "type": "datetime2(7)", "nullable": true },
+        "User_LastLoginDate": { "type": "datetime2(7)", "nullable": true },
+        "User_Deleted": { "type": "datetime", "nullable": true }
+      },
+      "foreignKeys": [],
+      "indexes": []
+    }
+  }
+}
+```
+
+## Table Summary
+
+| Table | Column Count | Purpose |
+|-------|-------------|---------|
+| API | 5 | Endpoint/controller registry for permissions |
+| AuthAccessTokenBlacklists | 4 | Revoked access token tracking |
+| AuthLoginLockouts | 6 | Account lockout after failed logins |
+| AuthRefreshTokens | 13 | Refresh token storage with rotation |
+| AuthSessions | 9 | User session management |
+| DocContent | 8 | Text content at volume/section/page/paragraph |
+| Domains | 6 | Hierarchical subject domains |
+| Files | 7 | File metadata (polymorphic via TableName/TableRecordId) |
+| Logs | 7 | Audit/activity logging |
+| LogType | 3 | Log event types |
+| Modules | 5 | Hierarchical content/entity types |
+| MRT | 4 | Module-RelationType validity mapping |
+| News | 6 | News articles |
+| NewsCategory | 6 | News categories (note: misspelled `NewsCtegory_*`) |
+| NewsRelNewsCategory | 4 | News-Category junction |
+| NewsRelTags | 4 | News-Tags junction (→Terms) |
+| Organizations | 8 | Organizations/companies |
+| OrganizationUsers | 5 | User-Organization membership |
+| Payments | 5 | Payment records (status via Project process) |
+| Permissions | 5 | Role-API permission grants |
+| Process | 10 | Workflow step definitions |
+| Projects | 9 | Workflow project instances |
+| ProjectType | 4 | Workflow project type definitions |
+| ProjectUsers | 4 | User-Project participation |
+| RelationConstraints | 8 | Cardinality and validation rules |
+| Relations | 8 | Knowledge graph edges (TMD→TMD) |
+| RelationsTypes | 15 | Relation/attribute type definitions with graph flags |
+| Roles | 3 | User roles |
+| States | 3 | Generic status values |
+| Terms | 5 | Base terminology/concepts |
+| Themes | 8 | UI theme configurations |
+| ThemeTypes | 3 | Theme type definitions |
+| TMD | 8 | Central graph node (Term×Module×Domain) |
+| TMDP | 6 | TMD-Project workflow tracking |
+| UserRoles | 4 | User-Role assignments |
+| Users | 11 | User accounts |
+
+**Total: 36 tables, 262 columns**
+
+## Notable Legacy Names (preserved per INV-01)
+
+- `NewsCtegory_Id`, `NewsCtegory_Title`, etc. (misspelled "Category")
+- `Oranization_Description` (misspelled "Organization")
+- `MinCardinallity`, `MaxCardinallity` (misspelled "Cardinality")
+- `OrganizationUsers_isAgent` (lowercase 'i')
+- `TermsRelation_Id`, `TermsRelation_TypeId`, etc. (not "Relation")
+- `TMD_StateId` AND `State_Id` on TMD table (both exist)
